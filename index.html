@@ -98,8 +98,11 @@
   </section>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button type="button" id="lightboxClose" aria-label="Закрыть">×</button>
+    <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Закрыть">×</button>
+    <button class="lightbox-nav lightbox-prev" type="button" id="lightboxPrev" aria-label="Предыдущее фото">‹</button>
     <img id="lightboxImage" alt="">
+    <button class="lightbox-nav lightbox-next" type="button" id="lightboxNext" aria-label="Следующее фото">›</button>
+    <div class="lightbox-counter" id="lightboxCounter" aria-live="polite"></div>
   </div>
 
   <script src="site-data.js"></script>
