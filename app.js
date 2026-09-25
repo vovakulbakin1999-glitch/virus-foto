@@ -374,13 +374,14 @@ const galleryTitle = document.getElementById('galleryTitle');
 const galleryType = document.getElementById('galleryType');
 const galleryCount = document.getElementById('galleryCount');
 let returnScroll = 0;
+let activeGalleryPhotos = [];
 
-function makeGalleryPhoto(src){
+function makeGalleryPhoto(src, index){
   const b = document.createElement('button');
   b.className = 'gallery-photo';
   b.type = 'button';
   b.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
-  b.addEventListener('click', () => openLightbox(src));
+  b.addEventListener('click', () => openLightbox(index));
   return b;
 }
 
@@ -391,11 +392,13 @@ function openGallery({type,title,photos=[],groups=null}){
 
   const grouped = Array.isArray(groups) && groups.length;
   const allPhotos = grouped ? groups.flatMap(group => group.photos) : photos;
+  activeGalleryPhotos = allPhotos.slice();
   galleryCount.textContent = `${allPhotos.length} фото`;
   galleryGrid.innerHTML = '';
   galleryGrid.classList.toggle('grouped', !!grouped);
 
   if(grouped){
+    let photoIndex = 0;
     groups.forEach((group, index) => {
       const section = document.createElement('section');
       section.className = 'gallery-person-group';
@@ -409,12 +412,15 @@ function openGallery({type,title,photos=[],groups=null}){
 
       const grid = document.createElement('div');
       grid.className = 'person-group-grid';
-      group.photos.forEach(src => grid.appendChild(makeGalleryPhoto(src)));
+      group.photos.forEach(src => {
+        grid.appendChild(makeGalleryPhoto(src, photoIndex));
+        photoIndex += 1;
+      });
       section.appendChild(grid);
       galleryGrid.appendChild(section);
     });
   } else {
-    photos.forEach(src => galleryGrid.appendChild(makeGalleryPhoto(src)));
+    photos.forEach((src, index) => galleryGrid.appendChild(makeGalleryPhoto(src, index)));
   }
 
   galleryView.classList.add('open');
@@ -433,20 +439,78 @@ document.getElementById('galleryClose').addEventListener('click', closeGallery);
 
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
-function openLightbox(src){
-  lightboxImage.src = src;
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const lightboxCounter = document.getElementById('lightboxCounter');
+let lightboxIndex = 0;
+let lightboxTouchStartX = null;
+let lightboxTouchStartY = null;
+
+function renderLightboxPhoto(){
+  if(!activeGalleryPhotos.length) return;
+  lightboxIndex = (lightboxIndex + activeGalleryPhotos.length) % activeGalleryPhotos.length;
+  lightboxImage.src = activeGalleryPhotos[lightboxIndex];
+  lightboxCounter.textContent = `${lightboxIndex + 1} / ${activeGalleryPhotos.length}`;
+  const showNav = activeGalleryPhotos.length > 1;
+  lightboxPrev.hidden = !showNav;
+  lightboxNext.hidden = !showNav;
+  lightboxCounter.hidden = !showNav;
+}
+
+function openLightbox(index){
+  lightboxIndex = Number.isInteger(index) ? index : 0;
+  renderLightboxPhoto();
   lightbox.classList.add('open');
   lightbox.setAttribute('aria-hidden','false');
 }
+
+function showLightboxPhoto(direction){
+  if(activeGalleryPhotos.length < 2) return;
+  lightboxIndex += direction;
+  renderLightboxPhoto();
+}
+
 function closeLightbox(){
   lightbox.classList.remove('open');
   lightbox.setAttribute('aria-hidden','true');
 }
+
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', e => {
+  e.stopPropagation();
+  showLightboxPhoto(-1);
+});
+lightboxNext.addEventListener('click', e => {
+  e.stopPropagation();
+  showLightboxPhoto(1);
+});
+
 lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
-addEventListener('keydown', e => {
-  if(e.key === 'Escape'){
-    if(lightbox.classList.contains('open')) closeLightbox();
-    else if(galleryView.classList.contains('open')) closeGallery();
+
+lightbox.addEventListener('touchstart', e => {
+  if(!lightbox.classList.contains('open') || !e.touches.length) return;
+  lightboxTouchStartX = e.touches[0].clientX;
+  lightboxTouchStartY = e.touches[0].clientY;
+}, {passive:true});
+
+lightbox.addEventListener('touchend', e => {
+  if(lightboxTouchStartX === null || !e.changedTouches.length) return;
+  const dx = e.changedTouches[0].clientX - lightboxTouchStartX;
+  const dy = e.changedTouches[0].clientY - lightboxTouchStartY;
+  lightboxTouchStartX = null;
+  lightboxTouchStartY = null;
+
+  if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.15){
+    showLightboxPhoto(dx < 0 ? 1 : -1);
   }
+}, {passive:true});
+
+addEventListener('keydown', e => {
+  if(lightbox.classList.contains('open')){
+    if(e.key === 'Escape') closeLightbox();
+    else if(e.key === 'ArrowLeft') showLightboxPhoto(-1);
+    else if(e.key === 'ArrowRight') showLightboxPhoto(1);
+    return;
+  }
+  if(e.key === 'Escape' && galleryView.classList.contains('open')) closeGallery();
 });
