@@ -2148,3 +2148,57 @@ footer{border-top:1px solid rgba(218,192,155,.18) !important;}
   font-size:12px !important;
   line-height:1.35 !important;
 }
+
+
+/* ===== LIGHTBOX PHOTO NAVIGATION ===== */
+.lightbox .lightbox-close{
+  position:absolute;
+  right:18px;
+  top:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid #5d5144;
+  background:#151311;
+  color:#fff;
+  font-size:27px;
+  cursor:pointer;
+  z-index:4;
+}
+.lightbox .lightbox-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:58px;
+  height:72px;
+  border:1px solid rgba(195,161,116,.55);
+  background:rgba(15,13,11,.72);
+  color:#f5eee5;
+  font:400 52px/1 Georgia,serif;
+  cursor:pointer;
+  z-index:3;
+  backdrop-filter:blur(6px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.lightbox .lightbox-nav:hover{
+  background:rgba(28,23,18,.92);
+  border-color:#c3a174;
+}
+.lightbox .lightbox-prev{left:18px;right:auto}
+.lightbox .lightbox-next{right:18px;left:auto}
+.lightbox .lightbox-counter{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  min-width:64px;
+  padding:7px 12px;
+  border:1px solid rgba(195,161,116,.32);
+  background:rgba(10,9,8,.68);
+  color:#c8bcae;
+  font:500 12px/1.2 Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  text-align:center;
+  z-index:3;
+  backdrop-filter:blur(6px);
+}
