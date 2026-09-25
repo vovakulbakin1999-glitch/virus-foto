@@ -2025,3 +2025,35 @@ footer{border-top:1px solid rgba(218,192,155,.18) !important;}
   .about{grid-template-columns:1fr !important;}
   .about-photo{max-width:220px !important;width:100% !important;margin:0 auto 18px !important;justify-self:center !important;}
 }
+
+
+/* ===== PRICE TYPOGRAPHY FIX ===== */
+#prices .price,
+#prices .price b,
+#prices .price strong,
+#prices .price span{
+  font-family: Arial, Helvetica, sans-serif !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+#prices .price b{
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+}
+#prices .price strong{
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  margin: 20px 0 4px !important;
+  white-space: nowrap;
+}
+#prices .price span{
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+}
