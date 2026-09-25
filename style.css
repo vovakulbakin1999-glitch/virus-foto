@@ -1,0 +1,2020 @@
+
+:root{
+  --bg:#0c0b0a;--panel:rgba(18,16,14,.88);--paper:#e5dac8;--ink:#f5eee5;
+  --muted:#b6aa9b;--accent:#c3a174;--line:rgba(218,192,155,.22);--shadow:0 24px 70px rgba(0,0,0,.45)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;color:var(--ink);font-family:Inter,Arial,sans-serif;background:transparent;overflow-x:hidden}
+button,a{font:inherit}
+button{color:inherit}
+.bg-stage{position:fixed;inset:-3vh -2vw;z-index:-4;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px;transform:rotate(-.7deg) scale(1.035);overflow:hidden;background:#111}
+.bg-tile{width:100%;height:100%;object-fit:cover;opacity:.48;filter:saturate(.75) contrast(1.04) brightness(.62);transition:opacity .35s ease,transform 7s ease}
+.bg-tile.swap{opacity:.08;transform:scale(1.03)}
+.bg-shade{position:fixed;inset:0;z-index:-3;background:
+  linear-gradient(180deg,rgba(7,6,5,.22) 0%,rgba(12,11,10,.82) 58%,#0c0b0a 93%),
+  radial-gradient(circle at 50% 13%,transparent 0 18%,rgba(0,0,0,.52) 74%)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.88' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.header{position:sticky;top:0;z-index:50;min-height:72px;padding:10px clamp(16px,3vw,42px);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;background:rgba(12,11,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px;border:0;background:transparent;cursor:pointer}
+.brand img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid #6c5b47}
+.brand span{font-family:Georgia,serif;font-size:16px;letter-spacing:.12em}
+nav{display:flex;justify-content:center;gap:24px}
+nav a{color:#ddd2c5;text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.12em}
+.socials{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.social{width:39px;height:39px;border:1px solid var(--line);display:grid;place-items:center;color:#eee4d8;background:rgba(18,16,14,.7);text-decoration:none;transition:.2s}
+.social:hover{transform:translateY(-2px);border-color:#a98c68;background:#211c17}
+.social svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7}
+main{max-width:1320px;margin:auto;padding:0 24px 90px}
+.hero{min-height:72vh;display:flex;align-items:flex-end;padding:70px 10px 74px;text-shadow:0 4px 30px rgba(0,0,0,.85)}
+.hero-copy{max-width:760px}
+.kicker,.section-head>span,.about-copy>span,.gallery-toolbar span{color:var(--accent);text-transform:uppercase;letter-spacing:.19em;font-size:11px}
+.hero h1{font:500 clamp(66px,11vw,145px)/.82 Georgia,serif;margin:14px 0 22px}
+.hero p{max-width:660px;color:#d9cfc3;font-size:18px;line-height:1.7;margin:0 0 25px}
+.hero-cta{display:inline-block;color:#f6eee4;border-bottom:1px solid var(--accent);text-decoration:none;padding:6px 0}
+.panel{margin:34px 0 84px;padding:34px;background:linear-gradient(180deg,rgba(18,16,14,.88),rgba(13,12,11,.91));border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+.section-head{display:grid;grid-template-columns:1fr auto;align-items:end;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:26px}
+.section-head>span{grid-column:1/-1}
+.section-head h2,.about-copy h2{font:500 clamp(36px,5vw,62px)/1 Georgia,serif;margin:8px 0 0}
+.section-head p{max-width:450px;color:var(--muted);margin:0 0 6px 22px;line-height:1.6}
+.people-strip{display:flex;gap:24px;overflow-x:auto;padding:8px 7px 24px;scrollbar-width:thin;scrollbar-color:#705f4c transparent}
+.person-circle{flex:0 0 124px;width:124px;height:124px;border-radius:50%;border:1px solid #7a674f;padding:5px;background:rgba(18,16,14,.96);cursor:pointer;box-shadow:0 16px 35px rgba(0,0,0,.45);transition:.24s}
+.person-circle:hover{transform:translateY(-5px) scale(1.025);border-color:#c3a174}
+.person-circle img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.genre-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.genre-card{padding:0;border:0;background:#161310;box-shadow:0 20px 50px rgba(0,0,0,.34);cursor:pointer;text-align:left;overflow:hidden}
+.genre-cover{position:relative;overflow:hidden;aspect-ratio:16/10}
+.genre-cover img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
+.genre-card:hover .genre-cover img{transform:scale(1.025)}
+.genre-meta{display:grid;grid-template-columns:1fr auto;align-items:center;background:var(--paper);color:#17120d;padding:17px 19px}
+.genre-meta h3{font:500 27px Georgia,serif;margin:0}
+.genre-meta p{color:#736756;margin:4px 0 0;font-size:12px}
+.genre-meta b{font-size:24px}
+.about{display:grid;grid-template-columns:minmax(270px,420px) 1fr;gap:50px;align-items:center}
+.about-photo{padding:9px;background:var(--paper);transform:rotate(-.6deg)}
+.about-photo img{width:100%;display:block}
+.about-copy p{color:#c8bcad;line-height:1.85;max-width:650px}
+.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.price{padding:24px;border:1px solid var(--line);background:rgba(13,12,10,.78)}
+.price b{font:500 21px Georgia,serif}.price strong{display:block;color:var(--accent);font-size:21px;margin:27px 0 4px}.price span{font-size:12px;color:var(--muted)}
+footer{padding:52px clamp(20px,4vw,60px);border-top:1px solid var(--line);background:#090807;display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px}
+.footer-brand{display:flex;align-items:center;gap:15px}.footer-brand img{width:62px;height:62px;border-radius:50%;object-fit:cover}
+.footer-brand strong{font:500 31px Georgia,serif;display:block}.footer-brand span{color:var(--muted);font-size:13px}
+.gallery-view{position:fixed;inset:0;z-index:90;background:#0c0b0a;display:none;grid-template-rows:auto 1fr}
+.gallery-view.open{display:grid}
+.gallery-toolbar{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:16px clamp(16px,3vw,36px);background:rgba(12,11,10,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.gallery-toolbar>div{text-align:center}.gallery-toolbar h2{font:500 clamp(25px,4vw,43px) Georgia,serif;margin:4px 0 1px}.gallery-toolbar p{margin:0;color:var(--muted);font-size:12px}
+.back-button,.close-button{border:1px solid #594b3c;background:#181512;cursor:pointer}
+.back-button{padding:12px 16px}.close-button{width:46px;height:46px;border-radius:50%;font-size:26px}
+.gallery-scroll{overflow:auto;padding:24px clamp(12px,3vw,36px) 60px}
+.gallery-grid{columns:4 270px;column-gap:12px;max-width:1500px;margin:auto}
+.gallery-photo{border:0;background:none;padding:0;width:100%;break-inside:avoid;margin:0 0 12px;cursor:zoom-in}
+.gallery-photo img{width:100%;display:block}
+.lightbox{position:fixed;inset:0;z-index:120;background:rgba(3,3,3,.96);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}.lightbox img{max-width:95vw;max-height:94vh;object-fit:contain}
+.lightbox button{position:absolute;right:18px;top:18px;width:48px;height:48px;border-radius:50%;border:1px solid #5d5144;background:#151311;color:#fff;font-size:27px;cursor:pointer}
+body.gallery-open{overflow:hidden}
+@media(max-width:980px){
+  .header{grid-template-columns:auto 1fr}.header nav{display:none}.header .socials{grid-column:2}
+  .genre-grid{grid-template-columns:1fr}.prices{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.section-head p{margin:12px 0 0}
+}
+@media(max-width:680px){
+  .header{gap:10px;padding:8px 12px}.brand span{display:none}.brand img{width:42px;height:42px}
+  .header .social{width:36px;height:36px}.header .social.mail{display:none}
+  main{padding:0 12px 58px}.hero{min-height:62vh;padding:55px 8px}.hero h1{font-size:58px}
+  .panel{padding:20px 14px;margin:18px 0 48px}.person-circle{flex-basis:103px;width:103px;height:103px}
+  .prices{grid-template-columns:1fr}.genre-meta h3{font-size:22px}
+  footer{grid-template-columns:1fr}.footer-socials{justify-content:flex-start}
+  .gallery-toolbar{grid-template-columns:auto 1fr auto;gap:8px;padding:10px}.back-button{padding:10px 11px}
+  .gallery-toolbar h2{font-size:21px}.gallery-toolbar span{font-size:9px}.gallery-toolbar p{font-size:10px}
+  .close-button{width:40px;height:40px}.gallery-scroll{padding:10px 8px 45px}.gallery-grid{columns:2 150px;column-gap:7px}.gallery-photo{margin-bottom:7px}
+  .bg-stage{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)}
+}
+
+
+/* ===== CRAFT / TORN UPDATE ===== */
+:root{
+  --paper-dark:#171410;
+  --paper-mid:#211b16;
+  --craft:#b99465;
+}
+
+/* Raise the main title higher */
+.hero{
+  min-height:68vh;
+  align-items:flex-start;
+  padding-top:92px;
+  padding-bottom:80px;
+}
+.hero-copy{
+  position:relative;
+  transform:rotate(-.18deg);
+}
+.hero-copy:before{
+  content:"";
+  position:absolute;
+  left:-22px;
+  top:-24px;
+  width:220px;
+  height:8px;
+  background:linear-gradient(90deg,transparent,#b99465 12%,#b99465 86%,transparent);
+  opacity:.55;
+  transform:rotate(-1.2deg);
+  clip-path:polygon(0 35%,7% 12%,18% 42%,28% 5%,40% 32%,55% 10%,68% 40%,83% 8%,100% 31%,96% 75%,82% 55%,70% 88%,58% 58%,43% 92%,28% 60%,12% 86%,0 70%);
+}
+.hero h1{
+  text-shadow:0 7px 34px rgba(0,0,0,.88);
+  letter-spacing:-.035em;
+}
+
+/* Torn craft panels */
+.panel{
+  position:relative;
+  border:0;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.018),transparent 28%),
+    linear-gradient(180deg,rgba(22,19,16,.94),rgba(12,11,10,.94));
+  clip-path:polygon(
+    .4% 1.2%, 2.2% .2%, 4.1% 1%, 7% .15%, 10% .85%, 14% .25%, 18% 1%,
+    22% .1%, 27% .8%, 31% .2%, 36% 1%, 41% .15%, 47% .9%, 52% .1%, 57% .8%,
+    63% .2%, 69% 1%, 75% .1%, 81% .9%, 87% .2%, 92% 1%, 97% .2%, 99.6% 1.1%,
+    99.2% 6%, 99.7% 13%, 99.1% 21%, 99.8% 30%, 99.2% 40%, 99.7% 50%,
+    99.1% 60%, 99.8% 70%, 99.2% 80%, 99.7% 90%, 99.1% 99%,
+    95% 99.6%, 90% 98.9%, 84% 99.8%, 77% 99%, 70% 99.7%, 63% 99.1%, 55% 99.8%,
+    47% 99%, 39% 99.7%, 32% 99.1%, 25% 99.8%, 18% 99%, 11% 99.7%, 5% 99%, .7% 99.6%,
+    1.2% 92%, .5% 84%, 1.1% 75%, .4% 66%, 1% 57%, .5% 48%, 1.1% 39%, .4% 30%,
+    1% 20%, .5% 11%
+  );
+  box-shadow:0 26px 72px rgba(0,0,0,.5);
+}
+.panel:before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  pointer-events:none;
+  border:1px solid rgba(195,161,116,.20);
+  background:
+    linear-gradient(102deg,transparent 0 46%,rgba(255,255,255,.015) 46.3%,transparent 47%),
+    repeating-linear-gradient(8deg,transparent 0 41px,rgba(255,255,255,.012) 42px,transparent 44px);
+  mix-blend-mode:screen;
+}
+.panel:after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:20px;
+  right:7%;
+  top:-5px;
+  background:rgba(187,151,104,.16);
+  transform:rotate(2.4deg);
+  clip-path:polygon(0 18%,8% 3%,17% 15%,28% 0,39% 12%,50% 2%,61% 17%,72% 3%,83% 14%,100% 2%,98% 82%,88% 92%,76% 80%,65% 96%,52% 82%,40% 95%,28% 80%,16% 94%,2% 83%);
+}
+
+/* Keep circles clean and clickable, but make ring craft-like */
+.person-circle{
+  position:relative;
+  border:0;
+  outline:1px solid rgba(195,161,116,.65);
+  outline-offset:4px;
+  background:#100e0c;
+  box-shadow:0 17px 40px rgba(0,0,0,.58);
+}
+.person-circle:after{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  border:1px dashed rgba(195,161,116,.24);
+  transform:rotate(7deg);
+  pointer-events:none;
+}
+.person-circle:first-child{
+  outline-color:#d2aa72;
+  box-shadow:0 18px 42px rgba(0,0,0,.62),0 0 0 1px rgba(210,170,114,.16);
+}
+.person-circle:first-child:before{
+  content:"NEW";
+  position:absolute;
+  z-index:2;
+  right:-12px;
+  top:-9px;
+  padding:4px 7px 3px;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.16em;
+  color:#17110b;
+  background:#d2aa72;
+  transform:rotate(7deg);
+  clip-path:polygon(4% 9%,15% 0,28% 8%,43% 1%,57% 8%,72% 0,86% 9%,100% 2%,96% 91%,83% 84%,70% 98%,55% 88%,40% 98%,25% 87%,10% 98%,0 86%);
+}
+
+/* Uneven portfolio cards */
+.genre-card{
+  transform:rotate(-.28deg);
+  clip-path:polygon(.5% 1.5%,5% .2%,11% 1.1%,18% .3%,25% 1.2%,32% .2%,40% 1%,49% .2%,58% 1.2%,67% .2%,76% 1%,85% .2%,94% 1.1%,99.5% .3%,99% 99%,92% 98.5%,83% 99.7%,73% 98.9%,63% 99.6%,52% 98.8%,42% 99.7%,31% 98.9%,21% 99.6%,10% 98.8%,.4% 99.5%);
+}
+.genre-card:nth-child(even){transform:rotate(.32deg)}
+.genre-card:nth-child(3n){transform:rotate(-.5deg)}
+.genre-meta{background:#ded1bd}
+.about-photo{
+  clip-path:polygon(1% 2%,8% 0,16% 2%,25% .5%,34% 2%,44% .3%,55% 2%,65% .5%,76% 2%,87% .3%,99% 1.7%,98% 99%,89% 97.8%,80% 99.5%,69% 98%,57% 99.6%,46% 98%,35% 99.5%,24% 98%,13% 99.3%,1% 98%);
+}
+
+/* Background has its own slow movement even when the page is still */
+.bg-stage{
+  overflow:hidden;
+  gap:9px;
+}
+.bg-tile{
+  will-change:transform,opacity;
+  transition:opacity .45s ease,filter .45s ease;
+  animation:craftDrift 14s ease-in-out infinite alternate;
+}
+.bg-tile:nth-child(2n){animation-duration:18s;animation-delay:-4s}
+.bg-tile:nth-child(3n){animation-duration:21s;animation-delay:-9s}
+.bg-tile:nth-child(4n){animation-direction:alternate-reverse}
+.bg-tile.swap{
+  opacity:.08;
+  filter:saturate(.6) contrast(1.05) brightness(.48);
+}
+@keyframes craftDrift{
+  0%{transform:scale(1.04) translate3d(-1.2%,-.8%,0) rotate(-.12deg)}
+  45%{transform:scale(1.09) translate3d(.8%,-1.3%,0) rotate(.10deg)}
+  100%{transform:scale(1.06) translate3d(1.3%,1%,0) rotate(-.08deg)}
+}
+
+@media(max-width:680px){
+  .hero{padding-top:62px;min-height:58vh}
+  .hero-copy:before{left:-7px;width:150px}
+  .panel{clip-path:none}
+  .panel:after{display:none}
+}
+
+
+/* ===== LAST USER EDITS ===== */
+/* No title/copy above the people circles */
+.people-panel{padding-top:26px;padding-bottom:20px}
+.people-panel .people-strip{margin-top:0}
+
+/* Stronger craft / torn typography without external font dependencies */
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.genre-meta h3,
+.gallery-toolbar h2,
+.footer-brand strong,
+.brand span{
+  font-family:Impact,"Arial Black","Courier New",sans-serif;
+  font-weight:900;
+  letter-spacing:.025em;
+  text-transform:uppercase;
+  text-rendering:geometricPrecision;
+}
+.hero h1{
+  letter-spacing:.01em;
+  transform:rotate(-.7deg) skewX(-1.2deg);
+  text-shadow:
+    2px 0 0 rgba(195,161,116,.18),
+    -1px 2px 0 rgba(0,0,0,.9),
+    0 9px 34px rgba(0,0,0,.9);
+  -webkit-mask-image:repeating-linear-gradient(176deg,#000 0 7px,rgba(0,0,0,.86) 8px,#000 10px);
+  mask-image:repeating-linear-gradient(176deg,#000 0 7px,rgba(0,0,0,.86) 8px,#000 10px);
+}
+.section-head h2,.about-copy h2,.gallery-toolbar h2{
+  transform:rotate(-.28deg);
+  text-shadow:1px 1px 0 rgba(185,148,98,.13);
+}
+.genre-meta h3{
+  letter-spacing:.035em;
+  transform:rotate(-.3deg);
+}
+.kicker,.section-head>span,.about-copy>span,.gallery-toolbar span{
+  font-family:"Courier New",monospace;
+  font-weight:700;
+  letter-spacing:.18em;
+}
+
+/* Faster, obvious vertical up/down motion. Scroll still swaps the actual images. */
+.bg-tile{
+  animation-name:craftVerticalBounce !important;
+  animation-duration:5.2s !important;
+  animation-timing-function:ease-in-out !important;
+  animation-iteration-count:infinite !important;
+  animation-direction:alternate !important;
+  transform-origin:center;
+}
+.bg-tile:nth-child(2n){animation-duration:6.1s !important;animation-delay:-2.2s !important;animation-direction:alternate-reverse !important}
+.bg-tile:nth-child(3n){animation-duration:4.7s !important;animation-delay:-1.3s !important}
+.bg-tile:nth-child(4n){animation-duration:5.7s !important;animation-delay:-3.1s !important;animation-direction:alternate-reverse !important}
+.bg-tile:nth-child(5n){animation-duration:4.9s !important;animation-delay:-.7s !important}
+.bg-tile:nth-child(6n){animation-duration:6.4s !important;animation-delay:-4.0s !important;animation-direction:alternate-reverse !important}
+@keyframes craftVerticalBounce{
+  0%{transform:scale(1.18) translate3d(-.4%,-5.5%,0) rotate(-.18deg)}
+  48%{transform:scale(1.16) translate3d(.35%,1.5%,0) rotate(.08deg)}
+  100%{transform:scale(1.18) translate3d(-.25%,5.5%,0) rotate(-.1deg)}
+}
+
+/* Slight craft rhythm in personal gallery, while keeping photo groups visually continuous */
+.gallery-photo:nth-child(7n+1){transform:rotate(-.22deg)}
+.gallery-photo:nth-child(7n+4){transform:rotate(.18deg)}
+
+@media(max-width:680px){
+  .people-panel{padding-top:18px}
+  .bg-tile{animation-duration:5.7s !important}
+}
+
+
+/* ===== GENRE GROUPING + SAFE COVERS + STRONGER TORN TYPE ===== */
+
+/* Обложка сохраняет человека целиком. Размытый дубль заполняет фон без жёсткого кропа. */
+.genre-cover{
+  position:relative;
+  isolation:isolate;
+  background:#110f0d;
+}
+.genre-cover::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:-24px;
+  background-image:var(--cover-image);
+  background-size:cover;
+  background-position:center;
+  filter:blur(20px) brightness(.46) saturate(.72);
+  transform:scale(1.10);
+  opacity:.88;
+}
+.genre-cover::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  background:linear-gradient(90deg,rgba(8,7,6,.18),transparent 25% 75%,rgba(8,7,6,.18));
+}
+.genre-cover img{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
+  object-fit:contain !important;
+  object-position:center center;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));
+  transform:scale(.965);
+}
+.genre-card:hover .genre-cover img{
+  transform:scale(.985);
+}
+
+/* Внутри жанра каждый человек — отдельный блок. Колонки больше не смешивают людей. */
+.gallery-grid.grouped{
+  columns:auto;
+  max-width:1500px;
+}
+.gallery-person-group{
+  display:block;
+  break-inside:avoid;
+}
+.gallery-person-group + .gallery-person-group{
+  margin-top:38px;
+}
+.person-group-divider{
+  height:13px;
+  margin:0 0 26px;
+  opacity:.48;
+  background:
+    linear-gradient(90deg,transparent 0 2%,#9b7b54 7% 93%,transparent 98%);
+  clip-path:polygon(
+    0 42%,5% 20%,11% 52%,18% 18%,25% 48%,32% 13%,40% 50%,47% 18%,
+    55% 52%,63% 15%,70% 48%,78% 20%,86% 50%,93% 17%,100% 43%,
+    100% 68%,94% 48%,87% 77%,79% 47%,71% 79%,63% 50%,55% 76%,
+    47% 48%,39% 80%,31% 49%,23% 76%,15% 48%,7% 77%,0 61%
+  );
+}
+.person-group-grid{
+  columns:4 270px;
+  column-gap:12px;
+}
+.person-group-grid .gallery-photo{
+  width:100%;
+  break-inside:avoid;
+  margin:0 0 12px;
+}
+
+/* Более заметная рваная типографика без внешних шрифтов. */
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.genre-meta h3,
+.gallery-toolbar h2,
+.footer-brand strong,
+.brand span{
+  font-family:Impact,"Arial Black","Arial Narrow Bold",sans-serif;
+  font-weight:900;
+  font-stretch:condensed;
+  letter-spacing:.035em;
+  -webkit-text-stroke:.25px currentColor;
+  -webkit-mask-image:repeating-linear-gradient(
+    176deg,
+    #000 0 7px,
+    rgba(0,0,0,.98) 7px 8px,
+    rgba(0,0,0,.10) 8px 8.55px,
+    #000 9px 15px
+  );
+  mask-image:repeating-linear-gradient(
+    176deg,
+    #000 0 7px,
+    rgba(0,0,0,.98) 7px 8px,
+    rgba(0,0,0,.10) 8px 8.55px,
+    #000 9px 15px
+  );
+}
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2{
+  transform:rotate(-.45deg) skewX(-.7deg);
+}
+.genre-meta h3{
+  transform:rotate(-.65deg) skewX(-.5deg);
+  text-shadow:1px 1px 0 rgba(255,255,255,.16),-1px 0 0 rgba(74,53,34,.14);
+}
+
+@media(max-width:680px){
+  .person-group-grid{
+    columns:2 145px;
+    column-gap:7px;
+  }
+  .gallery-person-group + .gallery-person-group{
+    margin-top:28px;
+  }
+  .person-group-divider{
+    margin-bottom:18px;
+  }
+}
+
+/* ===== FULL-FRAME COVERS + UNCROPPED MOVING BACKGROUND v4 ===== */
+/* Жанровые обложки: показываем исходный кадр целиком и максимально крупно. */
+.genre-cover{
+  overflow:hidden;
+  background:#0e0d0b;
+}
+.genre-cover img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:none !important;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.42));
+}
+.genre-card:hover .genre-cover img{
+  transform:none !important;
+}
+
+/* Фоновые кадры: целиком, без crop. Движение только вверх-вниз, без zoom. */
+.bg-stage{
+  inset:-11vh -3vw !important;
+  transform:rotate(-.45deg) scale(1.01) !important;
+  gap:8px;
+}
+.bg-tile{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  padding:3px;
+  background:#0b0a09;
+  animation-name:craftVerticalFullFrame !important;
+  transform-origin:center center !important;
+}
+.bg-tile.swap{
+  transform:none !important;
+}
+@keyframes craftVerticalFullFrame{
+  0%{transform:translate3d(0,-4.2%,0) rotate(-.08deg)}
+  50%{transform:translate3d(0,0,0) rotate(.04deg)}
+  100%{transform:translate3d(0,4.2%,0) rotate(-.04deg)}
+}
+
+@media(max-width:680px){
+  .bg-stage{inset:-10vh -5vw !important;transform:rotate(-.25deg) scale(1.01) !important}
+  .bg-tile{padding:2px}
+}
+
+/* ===== FINAL FULL PHOTO + SMOOTH BACKGROUND v5 ===== */
+/* Genre covers: the original photograph itself defines the cover height.
+   No blurred duplicate, no crop, no hover zoom. */
+.genre-card{
+  clip-path:none !important;
+  overflow:visible !important;
+}
+.genre-cover{
+  aspect-ratio:auto !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+  background:transparent !important;
+  isolation:auto !important;
+}
+.genre-cover::before,
+.genre-cover::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+}
+.genre-cover img{
+  position:relative !important;
+  z-index:auto !important;
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:none !important;
+  filter:none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+.genre-card:hover .genre-cover img{
+  transform:none !important;
+}
+
+/* Background: each photo remains fully visible.
+   Padding creates room for vertical drift without clipping at viewport edges. */
+.bg-stage{
+  inset:0 !important;
+  padding:5.5vh 2vw !important;
+  transform:none !important;
+  overflow:hidden !important;
+  gap:10px !important;
+  background:#0b0a09 !important;
+}
+.bg-tile{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+  opacity:.48;
+  will-change:transform,opacity,filter;
+  transition:opacity .72s ease-in-out, filter .72s ease-in-out !important;
+  animation:craftVerticalFullFrameV5 5.2s ease-in-out infinite alternate !important;
+  transform-origin:center center !important;
+}
+.bg-tile:nth-child(2n){animation-delay:-1.1s !important}
+.bg-tile:nth-child(3n){animation-delay:-2.25s !important}
+.bg-tile:nth-child(4n){animation-delay:-3.15s !important}
+.bg-tile.swap{
+  opacity:.035 !important;
+  filter:saturate(.58) contrast(1.03) brightness(.46) !important;
+}
+@keyframes craftVerticalFullFrameV5{
+  0%{transform:translate3d(0,-3.6%,0)}
+  50%{transform:translate3d(0,0,0)}
+  100%{transform:translate3d(0,3.6%,0)}
+}
+@media(max-width:680px){
+  .bg-stage{
+    inset:0 !important;
+    padding:5vh 2.5vw !important;
+    transform:none !important;
+    gap:7px !important;
+  }
+  .bg-tile{
+    animation-duration:4.8s !important;
+  }
+}
+
+
+/* ===== FINAL USER PASS v7 ===== */
+/* Six equal, medium-sized 9:16 genre covers. The photo is always shown whole. */
+#portfolio .genre-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(220px,310px)) !important;
+  justify-content:center !important;
+  align-items:start !important;
+  gap:26px !important;
+  max-width:1080px !important;
+  margin:0 auto !important;
+}
+#portfolio .genre-card{
+  width:100% !important;
+  max-width:310px !important;
+  margin:0 auto !important;
+  overflow:visible !important;
+  transform:none !important;
+}
+#portfolio .genre-cover{
+  width:100% !important;
+  aspect-ratio:9 / 16 !important;
+  height:auto !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#0b0a09 !important;
+  isolation:auto !important;
+}
+#portfolio .genre-cover::before,
+#portfolio .genre-cover::after{
+  content:none !important;
+  display:none !important;
+}
+#portfolio .genre-cover img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:none !important;
+  filter:none !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+#portfolio .genre-card:hover .genre-cover img{
+  transform:none !important;
+}
+
+/* Torn / loft type across the complete pricing block. */
+#prices .section-head span,
+#prices .section-head h2,
+#prices .section-head p,
+#prices .price b,
+#prices .price strong,
+#prices .price span{
+  font-family:Impact,"Arial Black","Arial Narrow Bold","Courier New",sans-serif !important;
+  font-weight:900 !important;
+  letter-spacing:.035em !important;
+  -webkit-text-stroke:.18px currentColor;
+  -webkit-mask-image:repeating-linear-gradient(
+    176deg,
+    #000 0 7px,
+    rgba(0,0,0,.98) 7px 8px,
+    rgba(0,0,0,.12) 8px 8.5px,
+    #000 9px 15px
+  );
+  mask-image:repeating-linear-gradient(
+    176deg,
+    #000 0 7px,
+    rgba(0,0,0,.98) 7px 8px,
+    rgba(0,0,0,.12) 8px 8.5px,
+    #000 9px 15px
+  );
+}
+#prices .price b{
+  display:block !important;
+  font-size:21px !important;
+  text-transform:uppercase !important;
+}
+#prices .price strong{
+  font-size:22px !important;
+}
+#prices .price span{
+  font-size:12px !important;
+  font-weight:700 !important;
+}
+#prices .section-head p{
+  font-size:14px !important;
+  font-weight:700 !important;
+}
+
+@media(max-width:980px){
+  #portfolio .genre-grid{
+    grid-template-columns:repeat(2,minmax(210px,290px)) !important;
+    max-width:650px !important;
+  }
+}
+@media(max-width:680px){
+  #portfolio .genre-grid{
+    grid-template-columns:minmax(0,280px) !important;
+    max-width:280px !important;
+    gap:20px !important;
+  }
+  #portfolio .genre-card{
+    max-width:280px !important;
+  }
+}
+
+
+/* ===== FLOATING FRAMELESS PORTFOLIO + SCROLL-CROSSFADE v8 ===== */
+
+/* People and Genres no longer live inside framed/paper panels. */
+#people.panel,
+#portfolio.panel{
+  position:relative !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  clip-path:none !important;
+  padding-left:6px !important;
+  padding-right:6px !important;
+}
+#people.panel::before,
+#people.panel::after,
+#portfolio.panel::before,
+#portfolio.panel::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Floating people circles: no frame, no outline, no extra ring. */
+#people .people-strip{
+  border:0 !important;
+  background:transparent !important;
+  padding:18px 12px 30px !important;
+  gap:28px !important;
+}
+#people .person-circle{
+  border:0 !important;
+  outline:0 !important;
+  outline-offset:0 !important;
+  background:transparent !important;
+  padding:0 !important;
+  box-shadow:0 18px 38px rgba(0,0,0,.42) !important;
+  animation:personFloat 6.8s ease-in-out infinite alternate;
+}
+#people .person-circle::before,
+#people .person-circle::after{
+  content:none !important;
+  display:none !important;
+}
+#people .person-circle:nth-child(2n){animation-duration:7.6s;animation-delay:-2.1s}
+#people .person-circle:nth-child(3n){animation-duration:6.1s;animation-delay:-3.4s}
+#people .person-circle img{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+}
+@keyframes personFloat{
+  0%{translate:0 3px}
+  50%{translate:0 -5px}
+  100%{translate:0 2px}
+}
+
+/* "Жанры" and its text float freely, without a frame or separator line. */
+#portfolio .section-head{
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:0 8px 12px !important;
+  margin-bottom:28px !important;
+}
+
+/* Exactly two genre covers per row on desktop, medium-sized and centered. */
+#portfolio .genre-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(230px,300px)) !important;
+  justify-content:center !important;
+  align-items:start !important;
+  gap:42px 38px !important;
+  max-width:660px !important;
+  margin:0 auto !important;
+}
+#portfolio .genre-card{
+  width:100% !important;
+  max-width:300px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  border:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  clip-path:none !important;
+  overflow:visible !important;
+  animation:genreFloat 7.4s ease-in-out infinite alternate;
+}
+#portfolio .genre-card:nth-child(2n){animation-duration:8.2s;animation-delay:-2.6s}
+#portfolio .genre-card:nth-child(3n){animation-duration:6.7s;animation-delay:-4.1s}
+@keyframes genreFloat{
+  0%{translate:0 4px}
+  50%{translate:0 -7px}
+  100%{translate:0 2px}
+}
+
+/* 9:16 cover area, source photo shown whole: no crop, no blur, no duplicate fill. */
+#portfolio .genre-cover{
+  width:100% !important;
+  aspect-ratio:9 / 16 !important;
+  height:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+}
+#portfolio .genre-cover::before,
+#portfolio .genre-cover::after{
+  content:none !important;
+  display:none !important;
+}
+#portfolio .genre-cover img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  transform:none !important;
+  filter:drop-shadow(0 18px 30px rgba(0,0,0,.24)) !important;
+  border:0 !important;
+  outline:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+/* Genre caption becomes part of the floating object instead of a beige framed card. */
+#portfolio .genre-meta{
+  background:transparent !important;
+  color:var(--ink) !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  padding:13px 4px 0 !important;
+}
+#portfolio .genre-meta p{color:var(--muted) !important}
+#portfolio .genre-meta b{color:var(--accent) !important}
+
+/* Background cells drift continuously; two layers crossfade according to scroll progress. */
+.bg-stage{
+  inset:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  grid-template-rows:repeat(2,1fr) !important;
+  gap:10px !important;
+  padding:7vh 2vw !important;
+  overflow:hidden !important;
+  transform:none !important;
+  background:#0b0a09 !important;
+}
+.bg-cell{
+  position:relative;
+  min-width:0;
+  min-height:0;
+  overflow:visible;
+  animation:bgCellDrift 7.8s ease-in-out infinite alternate;
+  will-change:translate;
+}
+.bg-cell:nth-child(2n){animation-duration:9.1s;animation-delay:-2.2s;animation-direction:alternate-reverse}
+.bg-cell:nth-child(3n){animation-duration:7.1s;animation-delay:-4.0s}
+.bg-cell:nth-child(5n){animation-duration:8.6s;animation-delay:-5.3s;animation-direction:alternate-reverse}
+@keyframes bgCellDrift{
+  0%{translate:0 -2.5%}
+  50%{translate:.4% .4%}
+  100%{translate:-.3% 2.5%}
+}
+.bg-photo{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center center;
+  opacity:0;
+  filter:saturate(.76) contrast(1.04) brightness(.62);
+  will-change:opacity;
+  transition:opacity .22s linear;
+  pointer-events:none;
+}
+
+/* Old one-image background tiles are no longer used in v8. */
+.bg-tile{display:none !important}
+
+@media(max-width:980px){
+  #portfolio .genre-grid{
+    grid-template-columns:repeat(2,minmax(210px,285px)) !important;
+    max-width:620px !important;
+    gap:34px 30px !important;
+  }
+}
+@media(max-width:680px){
+  #people.panel,
+  #portfolio.panel{
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  #people .people-strip{
+    overflow-x:auto !important;
+    padding-left:8px !important;
+    padding-right:8px !important;
+  }
+  #portfolio .genre-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    max-width:100% !important;
+    gap:24px 14px !important;
+    padding:0 2px !important;
+  }
+  #portfolio .genre-card{
+    max-width:none !important;
+  }
+  #portfolio .genre-meta h3{
+    font-size:clamp(16px,5vw,22px) !important;
+  }
+  .bg-stage{
+    grid-template-columns:repeat(2,1fr) !important;
+    grid-template-rows:repeat(3,1fr) !important;
+    padding:6vh 2.5vw !important;
+    gap:7px !important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #people .person-circle,
+  #portfolio .genre-card,
+  .bg-cell{
+    animation:none !important;
+    translate:none !important;
+  }
+  .bg-photo{transition:none !important}
+}
+
+
+/* ===== FINAL INTERACTION PASS v9 ===== */
+
+/* People: true horizontal carousel with snap points and room for future people. */
+#people .people-strip{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+  scroll-snap-type:x mandatory !important;
+  scroll-behavior:smooth !important;
+  overscroll-behavior-inline:contain !important;
+  -webkit-overflow-scrolling:touch;
+  gap:34px !important;
+  padding:34px max(28px,calc(50% - 76px)) 40px !important;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(195,161,116,.72) transparent;
+}
+#people .people-strip::-webkit-scrollbar{height:7px}
+#people .people-strip::-webkit-scrollbar-track{background:transparent}
+#people .people-strip::-webkit-scrollbar-thumb{
+  background:rgba(195,161,116,.58);
+  border-radius:999px;
+}
+
+/* The photo circle itself is frameless; the separate ring grows with focus. */
+#people .person-circle{
+  --focus-scale:.78;
+  --ring-scale:.90;
+  --ring-alpha:.42;
+  position:relative !important;
+  flex:0 0 132px !important;
+  width:132px !important;
+  height:132px !important;
+  scroll-snap-align:center !important;
+  scroll-snap-stop:normal;
+  transform:scale(var(--focus-scale)) !important;
+  transform-origin:center !important;
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),filter .24s ease,opacity .24s ease !important;
+  opacity:.62;
+  filter:saturate(.72) brightness(.76);
+  animation:none !important;
+  z-index:1;
+}
+#people .person-circle::before{
+  content:"" !important;
+  display:block !important;
+  position:absolute;
+  inset:-13px;
+  border-radius:50%;
+  border:1.5px solid rgba(207,176,133,var(--ring-alpha));
+  transform:scale(var(--ring-scale));
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),border-color .24s ease,opacity .24s ease;
+  pointer-events:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.035) inset;
+}
+#people .person-circle::after{
+  content:"" !important;
+  display:block !important;
+  position:absolute;
+  inset:-21px;
+  border-radius:50%;
+  border:1px solid rgba(138,111,78,calc(var(--ring-alpha) * .52));
+  transform:scale(calc(var(--ring-scale) * .97));
+  transition:transform .28s cubic-bezier(.2,.75,.25,1),opacity .24s ease;
+  pointer-events:none;
+}
+#people .person-circle img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  border-radius:50% !important;
+}
+#people .person-circle.carousel-focus{
+  opacity:1;
+  filter:saturate(1) brightness(1);
+  z-index:3;
+}
+#people .person-circle.keyboard-focus-visible:focus-visible,
+#people .person-circle:focus-visible{
+  outline:2px solid var(--accent) !important;
+  outline-offset:18px !important;
+}
+
+/* Genre cards: bring back understated frames while preserving 9:16 whole-photo covers. */
+#portfolio .genre-card{
+  border:1px solid rgba(171,145,110,.55) !important;
+  background:rgba(15,13,11,.56) !important;
+  padding:9px !important;
+  box-shadow:0 18px 44px rgba(0,0,0,.28) !important;
+}
+#portfolio .genre-cover{
+  border:1px solid rgba(255,255,255,.055) !important;
+  background:#0b0a09 !important;
+}
+#portfolio .genre-meta{
+  padding:14px 7px 5px !important;
+}
+
+/* Typography: chipped/grunge edges, not horizontal strikethrough bands. */
+#prices .section-head span,
+#prices .section-head h2,
+#prices .section-head p,
+#prices .price b,
+#prices .price strong,
+#prices .price span,
+.hero h1,
+#portfolio .section-head h2,
+#portfolio .genre-meta h3{
+  -webkit-text-stroke:0 !important;
+  -webkit-mask-image:
+    radial-gradient(circle at 7% 14%,transparent 0 1.4px,#000 1.8px),
+    radial-gradient(circle at 91% 23%,transparent 0 1.8px,#000 2.2px),
+    radial-gradient(circle at 18% 86%,transparent 0 1.3px,#000 1.7px),
+    linear-gradient(#000,#000) !important;
+  -webkit-mask-size:31px 27px,43px 39px,37px 33px,100% 100% !important;
+  -webkit-mask-repeat:repeat,repeat,repeat,no-repeat !important;
+  mask-image:
+    radial-gradient(circle at 7% 14%,transparent 0 1.4px,#000 1.8px),
+    radial-gradient(circle at 91% 23%,transparent 0 1.8px,#000 2.2px),
+    radial-gradient(circle at 18% 86%,transparent 0 1.3px,#000 1.7px),
+    linear-gradient(#000,#000) !important;
+  mask-size:31px 27px,43px 39px,37px 33px,100% 100% !important;
+  mask-repeat:repeat,repeat,repeat,no-repeat !important;
+}
+
+/* Background: fewer, visually larger cells; long, smooth crossfade. */
+.bg-stage{
+  grid-template-columns:repeat(2,1fr) !important;
+  grid-template-rows:repeat(2,1fr) !important;
+  gap:12px !important;
+  padding:3.5vh 1.3vw !important;
+}
+.bg-cell:nth-child(n+5){display:none !important}
+.bg-photo{
+  object-fit:cover !important;
+  object-position:center center !important;
+  transition:opacity 1.45s cubic-bezier(.22,.61,.36,1) !important;
+  filter:saturate(.80) contrast(1.04) brightness(.62);
+}
+@media(max-width:680px){
+  #people .people-strip{
+    gap:28px !important;
+    padding:32px max(22px,calc(50% - 65px)) 38px !important;
+  }
+  #people .person-circle{
+    flex-basis:116px !important;
+    width:116px !important;
+    height:116px !important;
+  }
+  .bg-stage{
+    grid-template-columns:1fr !important;
+    grid-template-rows:repeat(2,1fr) !important;
+    gap:9px !important;
+    padding:2.8vh 2vw !important;
+  }
+  .bg-cell:nth-child(n+3){display:none !important}
+}
+
+
+/* ===== USER FINAL PASS v10: v3/v4 FRAMES + GLOBAL DISTRESSED TYPE ===== */
+
+/* Restore the same torn craft frame language used in v3/v4 on every main block. */
+#people.panel,
+#portfolio.panel,
+#about.panel,
+#prices.panel{
+  position:relative !important;
+  border:0 !important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.018),transparent 28%),
+    linear-gradient(180deg,rgba(22,19,16,.94),rgba(12,11,10,.94)) !important;
+  box-shadow:0 26px 72px rgba(0,0,0,.5) !important;
+  backdrop-filter:blur(8px) !important;
+  clip-path:polygon(
+    .4% 1.2%,2.2% .2%,4.1% 1%,7% .15%,10% .85%,14% .25%,18% 1%,
+    22% .1%,27% .8%,31% .2%,36% 1%,41% .15%,47% .9%,52% .1%,57% .8%,
+    63% .2%,69% 1%,75% .1%,81% .9%,87% .2%,92% 1%,97% .2%,99.6% 1.1%,
+    99.2% 6%,99.7% 13%,99.1% 21%,99.8% 30%,99.2% 40%,99.7% 50%,
+    99.1% 60%,99.8% 70%,99.2% 80%,99.7% 90%,99.1% 99%,
+    95% 99.6%,90% 98.9%,84% 99.8%,77% 99%,70% 99.7%,63% 99.1%,55% 99.8%,
+    47% 99%,39% 99.7%,32% 99.1%,25% 99.8%,18% 99%,11% 99.7%,5% 99%,.7% 99.6%,
+    1.2% 92%,.5% 84%,1.1% 75%,.4% 66%,1% 57%,.5% 48%,1.1% 39%,.4% 30%,
+    1% 20%,.5% 11%
+  ) !important;
+}
+#people.panel::before,
+#portfolio.panel::before,
+#about.panel::before,
+#prices.panel::before{
+  content:"" !important;
+  display:block !important;
+  position:absolute !important;
+  inset:12px !important;
+  pointer-events:none !important;
+  border:1px solid rgba(195,161,116,.20) !important;
+  background:
+    linear-gradient(102deg,transparent 0 46%,rgba(255,255,255,.015) 46.3%,transparent 47%),
+    repeating-linear-gradient(8deg,transparent 0 41px,rgba(255,255,255,.012) 42px,transparent 44px) !important;
+  mix-blend-mode:screen;
+}
+#people.panel::after,
+#portfolio.panel::after,
+#about.panel::after,
+#prices.panel::after{
+  content:"" !important;
+  display:block !important;
+  position:absolute !important;
+  width:110px !important;
+  height:20px !important;
+  right:7% !important;
+  top:-5px !important;
+  background:rgba(187,151,104,.16) !important;
+  transform:rotate(2.4deg) !important;
+  clip-path:polygon(0 18%,8% 3%,17% 15%,28% 0,39% 12%,50% 2%,61% 17%,72% 3%,83% 14%,100% 2%,98% 82%,88% 92%,76% 80%,65% 96%,52% 82%,40% 95%,28% 80%,16% 94%,2% 83%) !important;
+}
+
+/* Keep the v3/v4 ring character on people, while retaining the center-growth carousel. */
+#people .person-circle{
+  border:0 !important;
+  outline:1px solid rgba(195,161,116,.65) !important;
+  outline-offset:4px !important;
+  background:#100e0c !important;
+  padding:5px !important;
+  box-shadow:0 17px 40px rgba(0,0,0,.58) !important;
+}
+#people .person-circle::before{
+  inset:-9px !important;
+  border:1px solid rgba(195,161,116,calc(var(--ring-alpha) * .9)) !important;
+  box-shadow:none !important;
+}
+#people .person-circle::after{
+  inset:-17px !important;
+  border:1px dashed rgba(195,161,116,calc(var(--ring-alpha) * .48)) !important;
+}
+
+/* Genre cards use the same rough-edged craft treatment as v3/v4. */
+#portfolio .genre-card{
+  border:1px solid rgba(218,192,155,.22) !important;
+  background:rgba(15,13,11,.74) !important;
+  padding:9px !important;
+  box-shadow:0 20px 50px rgba(0,0,0,.34) !important;
+  clip-path:polygon(.5% 1.5%,5% .2%,11% 1.1%,18% .3%,25% 1.2%,32% .2%,40% 1%,49% .2%,58% 1.2%,67% .2%,76% 1%,85% .2%,94% 1.1%,99.5% .3%,99% 99%,92% 98.5%,83% 99.7%,73% 98.9%,63% 99.6%,52% 98.8%,42% 99.7%,31% 98.9%,21% 99.6%,10% 98.8%,.4% 99.5%) !important;
+}
+#portfolio .genre-card:nth-child(even){rotate:.32deg}
+#portfolio .genre-card:nth-child(3n){rotate:-.5deg}
+
+/* Price columns keep the original v3/v4 one-line frame. */
+#prices .price{
+  border:1px solid var(--line) !important;
+  background:rgba(13,12,10,.78) !important;
+  box-shadow:0 16px 34px rgba(0,0,0,.22);
+}
+
+/* One distressed condensed visual language across the entire site. */
+body,
+button,
+a,
+input,
+textarea{
+  font-family:Impact,"Arial Black","Arial Narrow Bold","Arial Narrow",sans-serif !important;
+}
+body p,
+body span,
+body b,
+body strong,
+body h1,
+body h2,
+body h3,
+body a,
+body button{
+  text-rendering:geometricPrecision;
+}
+body h1,
+body h2,
+body h3,
+.brand span,
+.footer-brand strong,
+.price b,
+.price strong,
+.genre-meta h3,
+nav a,
+.hero-cta,
+.kicker,
+.section-head > span,
+.about-copy > span,
+.gallery-toolbar span{
+  letter-spacing:.045em;
+  -webkit-text-stroke:.15px currentColor;
+  -webkit-mask-image:
+    radial-gradient(circle at 9% 18%,transparent 0 1.5px,#000 1.9px),
+    radial-gradient(circle at 78% 37%,transparent 0 1.2px,#000 1.6px),
+    radial-gradient(circle at 31% 82%,transparent 0 1.35px,#000 1.8px),
+    linear-gradient(#000,#000) !important;
+  -webkit-mask-size:29px 25px,41px 35px,37px 31px,100% 100% !important;
+  -webkit-mask-repeat:repeat,repeat,repeat,no-repeat !important;
+  mask-image:
+    radial-gradient(circle at 9% 18%,transparent 0 1.5px,#000 1.9px),
+    radial-gradient(circle at 78% 37%,transparent 0 1.2px,#000 1.6px),
+    radial-gradient(circle at 31% 82%,transparent 0 1.35px,#000 1.8px),
+    linear-gradient(#000,#000) !important;
+  mask-size:29px 25px,41px 35px,37px 31px,100% 100% !important;
+  mask-repeat:repeat,repeat,repeat,no-repeat !important;
+}
+
+/* Wheel and touch are dedicated to horizontal movement while the pointer is over the people carousel. */
+#people .people-strip{
+  touch-action:pan-x !important;
+  overscroll-behavior-x:contain !important;
+  overscroll-behavior-y:none !important;
+  scroll-behavior:auto !important;
+}
+
+@media(max-width:680px){
+  #people.panel,
+  #portfolio.panel,
+  #about.panel,
+  #prices.panel{
+    clip-path:none !important;
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+  #people.panel::after,
+  #portfolio.panel::after,
+  #about.panel::after,
+  #prices.panel::after{display:none !important}
+}
+
+
+/* ===== v11: selected genre covers + seamless people carousel ===== */
+
+/* People carousel: completely hide browser scrollbars and keep only horizontal input. */
+#people .people-strip{
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scrollbar-width:none !important;
+  -ms-overflow-style:none !important;
+  scroll-behavior:auto !important;
+  scroll-snap-type:none !important;
+  overscroll-behavior-x:contain !important;
+  overscroll-behavior-y:none !important;
+  touch-action:pan-x !important;
+  padding-top:36px !important;
+  padding-bottom:36px !important;
+}
+#people .people-strip::-webkit-scrollbar{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+#people .person-circle{
+  scroll-snap-align:none !important;
+  scroll-snap-stop:normal !important;
+  will-change:transform,opacity,filter;
+}
+
+/* All six genre cards use one identical geometry.
+   The chosen source frame is shown completely, without crop or blurred fill. */
+#portfolio .genre-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(230px,300px)) !important;
+  justify-content:center !important;
+  align-items:stretch !important;
+  gap:38px 34px !important;
+  max-width:650px !important;
+  margin:0 auto !important;
+}
+#portfolio .genre-card{
+  width:100% !important;
+  max-width:300px !important;
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  margin:0 auto !important;
+}
+#portfolio .genre-cover{
+  width:100% !important;
+  aspect-ratio:9 / 16 !important;
+  height:auto !important;
+  flex:0 0 auto !important;
+  display:grid !important;
+  place-items:center !important;
+  overflow:hidden !important;
+  background:#0b0a09 !important;
+}
+#portfolio .genre-cover img{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+#portfolio .genre-meta{
+  min-height:86px !important;
+  flex:1 0 86px !important;
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  align-items:center !important;
+}
+
+@media(max-width:680px){
+  #people .people-strip{
+    padding-top:34px !important;
+    padding-bottom:34px !important;
+  }
+  #portfolio .genre-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    max-width:100% !important;
+    gap:24px 14px !important;
+  }
+  #portfolio .genre-card{
+    max-width:none !important;
+  }
+  #portfolio .genre-meta{
+    min-height:76px !important;
+    flex-basis:76px !important;
+  }
+}
+
+
+/* ===== v12: transparent-ring infinite people carousel ===== */
+#people .people-strip{
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scrollbar-width:none !important;
+  -ms-overflow-style:none !important;
+  scroll-behavior:auto !important;
+  scroll-snap-type:none !important;
+  overscroll-behavior-x:contain !important;
+  overscroll-behavior-y:none !important;
+  touch-action:pan-x !important;
+}
+#people .people-strip::-webkit-scrollbar{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+#people .person-circle{
+  background:transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  overflow:visible !important;
+}
+#people .person-circle::before{
+  background:transparent !important;
+  border:1.5px solid rgba(207,176,133,var(--ring-alpha)) !important;
+  box-shadow:none !important;
+}
+#people .person-circle::after{
+  background:transparent !important;
+  border:1px solid rgba(207,176,133,calc(var(--ring-alpha) * .42)) !important;
+  box-shadow:none !important;
+}
+#people .person-circle img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  border:0 !important;
+  border-radius:50% !important;
+  object-fit:cover !important;
+  clip-path:circle(50% at 50% 50%);
+  background:transparent !important;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+#people .person-circle.newest::before{
+  /* keep the ring only; no filled badge */
+  content:"" !important;
+}
+
+/* Uniform portrait covers, full image visible. */
+#portfolio .genre-cover{
+  aspect-ratio:2 / 3 !important;
+  background:#0b0a09 !important;
+}
+#portfolio .genre-cover img{
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
+
+/* ===== FINAL v13: requested type + TGK + genre shortcuts ===== */
+
+/* Same condensed distressed visual family across all text, including lowercase. */
+html, body, button, a, input, textarea, select{
+  font-family:Impact,Haettenschweiler,"Arial Narrow Bold","Arial Narrow",sans-serif !important;
+}
+body, button, a{font-synthesis:none}
+p, span, a, button, b, strong, h1, h2, h3{
+  font-family:inherit !important;
+}
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price b,
+.price strong,
+.brand span,
+.footer-brand strong,
+.hero-cta,
+.hero-tgk,
+.hero-genre-link,
+nav a{
+  font-stretch:condensed;
+  letter-spacing:.035em;
+}
+
+/* Stronger worn texture for display type, based on the supplied distressed examples. */
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price strong,
+.brand span,
+.footer-brand strong,
+.hero-cta,
+.hero-tgk,
+.hero-genre-link{
+  -webkit-text-stroke:.18px currentColor;
+  -webkit-mask-image:
+    radial-gradient(ellipse at 12% 19%,transparent 0 1.4px,#000 1.9px),
+    radial-gradient(ellipse at 72% 31%,transparent 0 1.1px,#000 1.6px),
+    radial-gradient(ellipse at 38% 77%,transparent 0 1.35px,#000 1.85px),
+    linear-gradient(176deg,#000 0 43%,rgba(0,0,0,.87) 43.5% 46%,#000 46.5% 100%);
+  -webkit-mask-size:27px 23px,39px 31px,35px 29px,100% 100%;
+  -webkit-mask-repeat:repeat,repeat,repeat,no-repeat;
+  mask-image:
+    radial-gradient(ellipse at 12% 19%,transparent 0 1.4px,#000 1.9px),
+    radial-gradient(ellipse at 72% 31%,transparent 0 1.1px,#000 1.6px),
+    radial-gradient(ellipse at 38% 77%,transparent 0 1.35px,#000 1.85px),
+    linear-gradient(176deg,#000 0 43%,rgba(0,0,0,.87) 43.5% 46%,#000 46.5% 100%);
+  mask-size:27px 23px,39px 31px,35px 29px,100% 100%;
+  mask-repeat:repeat,repeat,repeat,no-repeat;
+}
+
+/* Layout matching the marked screenshot:
+   portfolio action at upper-left, TGK in the red-marked area,
+   genre shortcuts in the green-marked area underneath. */
+.hero-tools{
+  width:min(620px,100%);
+  display:grid;
+  grid-template-columns:minmax(260px,360px) 92px;
+  grid-template-areas:
+    "cta tgk"
+    "genres .";
+  column-gap:34px;
+  row-gap:26px;
+  align-items:start;
+  margin-top:8px;
+}
+.hero-tools .hero-cta{
+  grid-area:cta;
+  width:max-content;
+  max-width:100%;
+  font-size:clamp(20px,2.2vw,30px);
+  line-height:1.08;
+  padding:4px 0 10px;
+  border-bottom:1px solid rgba(199,164,116,.82);
+}
+.hero-tgk{
+  grid-area:tgk;
+  width:86px;
+  height:70px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  color:#f1e7d8;
+  border:1px solid rgba(195,161,116,.38);
+  background:rgba(12,11,10,.22);
+  text-decoration:none;
+  transform:rotate(.5deg);
+  clip-path:polygon(2% 4%,94% 1%,100% 10%,97% 92%,88% 100%,5% 96%,0 85%);
+  transition:transform .22s ease,border-color .22s ease,background .22s ease;
+}
+.hero-tgk:hover{
+  transform:translateY(-2px) rotate(-.35deg);
+  border-color:rgba(213,181,136,.8);
+  background:rgba(31,26,21,.58);
+}
+.hero-tgk svg{
+  width:26px;height:26px;
+  fill:none;stroke:currentColor;stroke-width:1.6;
+}
+.hero-tgk span{
+  font-size:15px;
+  letter-spacing:.07em;
+}
+.hero-genre-links{
+  grid-area:genres;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 12px;
+  width:100%;
+  padding:14px 0 4px;
+}
+.hero-genre-link{
+  min-height:44px;
+  border:1px solid rgba(195,161,116,.26);
+  color:#e8ded0;
+  background:rgba(11,10,9,.18);
+  cursor:pointer;
+  padding:9px 12px;
+  text-align:left;
+  font-size:13px;
+  line-height:1.05;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+  clip-path:polygon(1% 5%,96% 1%,100% 12%,98% 94%,91% 100%,3% 97%,0 84%);
+}
+.hero-genre-link:nth-child(even){transform:rotate(.25deg)}
+.hero-genre-link:nth-child(3n){transform:rotate(-.35deg)}
+.hero-genre-link:hover{
+  transform:translateY(-2px);
+  border-color:rgba(211,178,132,.72);
+  background:rgba(28,24,20,.58);
+}
+
+/* Preserve v12 carousel requirements explicitly. */
+#people .people-strip{
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scrollbar-width:none !important;
+  -ms-overflow-style:none !important;
+  scroll-snap-type:none !important;
+  overscroll-behavior-x:contain !important;
+  touch-action:pan-x !important;
+}
+#people .people-strip::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important}
+#people .person-circle{
+  background:transparent !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+}
+#people .person-circle::before,
+#people .person-circle::after{background:transparent !important}
+
+/* Keep every genre cover the exact same footprint. */
+#portfolio .genre-card{height:100% !important}
+#portfolio .genre-cover{
+  width:100% !important;
+  aspect-ratio:2/3 !important;
+  height:auto !important;
+}
+#portfolio .genre-cover img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+@media(max-width:680px){
+  .hero-tools{
+    grid-template-columns:minmax(0,1fr) 72px;
+    column-gap:14px;
+    row-gap:18px;
+  }
+  .hero-tgk{width:70px;height:62px}
+  .hero-genre-links{gap:8px}
+  .hero-genre-link{font-size:11px;min-height:40px;padding:8px}
+}
+
+
+/* ===== v16 — restore screenshot font + large moving site background ===== */
+
+/* FONT: clean tall condensed bold, no cracked/grunge mask */
+html, body, button, a, input, textarea, select,
+.brand span, nav a, .kicker, .section-head>span, .about-copy>span,
+.gallery-toolbar span, .hero h1, .section-head h2, .about-copy h2,
+.gallery-toolbar h2, .genre-meta h3, .price b, .price strong,
+.price span, .footer-brand strong, .hero-cta, .hero-tgk span,
+.hero-genre-link, .back-button, .close-button, #galleryCount {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Narrow", sans-serif !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+body, p, .hero p, .about-copy p, .section-head p, .genre-meta p {
+  font-family: Arial, Helvetica, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+.hero h1 {
+  font-size: clamp(76px, 10.5vw, 148px) !important;
+  line-height: .78 !important;
+  letter-spacing: .01em !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+}
+
+.brand span,
+nav a,
+.kicker,
+.section-head>span,
+.about-copy>span,
+.gallery-toolbar span,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price b,
+.price strong,
+.footer-brand strong,
+.hero-cta,
+.hero-tgk span,
+.hero-genre-link {
+  font-weight: 900 !important;
+  letter-spacing: .035em !important;
+}
+
+/* subtle horizontal print texture like the screenshot title, without cracks */
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price strong {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      currentColor 0px,
+      currentColor 4px,
+      rgba(255,255,255,.84) 4px,
+      rgba(255,255,255,.84) 5px
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* BACKGROUND: three large portrait panels across the page */
+.bg-stage {
+  position: fixed !important;
+  inset: 56px 0 0 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: 1fr !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  overflow: hidden !important;
+  background: #0b0a09 !important;
+}
+
+.bg-cell {
+  position: relative !important;
+  min-width: 0 !important;
+  min-height: 100% !important;
+  overflow: hidden !important;
+  animation: bgLargeMove 13s ease-in-out infinite alternate !important;
+}
+
+.bg-cell:nth-child(2) {
+  animation-duration: 15s !important;
+  animation-delay: -4s !important;
+}
+.bg-cell:nth-child(3) {
+  animation-duration: 14s !important;
+  animation-delay: -7s !important;
+}
+.bg-cell:nth-child(n+4) {
+  display: none !important;
+}
+
+@keyframes bgLargeMove {
+  0%   { transform: translate3d(0,-2.5%,0) scale(1.06); }
+  50%  { transform: translate3d(0, 0.8%,0) scale(1.09); }
+  100% { transform: translate3d(0, 3.3%,0) scale(1.12); }
+}
+
+.bg-photo {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  filter: saturate(.78) contrast(1.03) brightness(.56) !important;
+  transition: opacity 1.7s cubic-bezier(.22,.61,.36,1) !important;
+}
+
+/* dark cinematic veil matching the screenshot */
+.bg-shade {
+  background:
+    linear-gradient(180deg, rgba(8,7,6,.10) 0%, rgba(8,7,6,.36) 34%, rgba(12,11,10,.82) 82%, #0c0b0a 100%),
+    linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.10) 50%, rgba(0,0,0,.26) 100%) !important;
+}
+
+@media (max-width: 680px) {
+  .bg-stage {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr !important;
+  }
+  .bg-cell:nth-child(n+2) {
+    display: none !important;
+  }
+  .hero h1 {
+    font-size: clamp(64px, 22vw, 108px) !important;
+  }
+}
+
+
+/* ===== v17: loft distressed font + softer bg transitions + semi-transparent frames ===== */
+:root{
+  --line: rgba(218,192,155,.26) !important;
+}
+
+/* Slightly distressed loft-like type without heavy cracks */
+.brand span,
+nav a,
+.kicker,
+.section-head>span,
+.about-copy>span,
+.gallery-toolbar span,
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price b,
+.price strong,
+.price span,
+.footer-brand strong,
+.hero-cta,
+.hero-tgk span,
+.hero-genre-link,
+.back-button,
+.close-button,
+#galleryCount {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Narrow", sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price strong,
+.price b,
+.footer-brand strong,
+.hero-cta,
+.hero-tgk span,
+.hero-genre-link,
+.back-button,
+.close-button{
+  color: transparent !important;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(248,240,230,.97) 0 4px, rgba(227,214,199,.88) 4px 5px),
+    linear-gradient(180deg, #f6eee4 0%, #dfd2c2 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow:none !important;
+  -webkit-mask-image:
+    radial-gradient(circle at 11% 17%, transparent 0 1.0px, #000 1.55px),
+    radial-gradient(circle at 79% 38%, transparent 0 0.9px, #000 1.45px),
+    radial-gradient(circle at 35% 76%, transparent 0 1.0px, #000 1.5px),
+    linear-gradient(#000,#000);
+  -webkit-mask-size: 24px 20px, 30px 26px, 26px 22px, 100% 100%;
+  -webkit-mask-repeat: repeat,repeat,repeat,no-repeat;
+  mask-image:
+    radial-gradient(circle at 11% 17%, transparent 0 1.0px, #000 1.55px),
+    radial-gradient(circle at 79% 38%, transparent 0 0.9px, #000 1.45px),
+    radial-gradient(circle at 35% 76%, transparent 0 1.0px, #000 1.5px),
+    linear-gradient(#000,#000);
+  mask-size: 24px 20px, 30px 26px, 26px 22px, 100% 100%;
+  mask-repeat: repeat,repeat,repeat,no-repeat;
+}
+
+body, p, .hero p, .about-copy p, .section-head p, .genre-meta p {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* All frames semi-transparent */
+.header,
+.panel,
+.about-photo,
+.social,
+.hero-tgk,
+.hero-genre-link,
+#portfolio .genre-card,
+#prices .price,
+.gallery-toolbar,
+.gallery-grid,
+.lightbox img,
+.footer-brand img,
+.brand img{
+  border-color: rgba(218,192,155,.26) !important;
+}
+
+.header{background: rgba(12,11,10,.76) !important; border-bottom:1px solid rgba(218,192,155,.22) !important;}
+.panel{background: linear-gradient(180deg, rgba(18,16,14,.68), rgba(13,12,11,.74)) !important; border:1px solid rgba(218,192,155,.22) !important;}
+.section-head{border-bottom:1px solid rgba(218,192,155,.19) !important;}
+.social{background: rgba(18,16,14,.45) !important; border:1px solid rgba(218,192,155,.24) !important;}
+.hero-tgk{background: rgba(12,11,10,.14) !important; border:1px solid rgba(218,192,155,.24) !important;}
+.hero-genre-link{background: rgba(11,10,9,.12) !important; border:1px solid rgba(218,192,155,.20) !important;}
+#portfolio .genre-card{background: rgba(22,19,16,.45) !important; border:1px solid rgba(218,192,155,.18) !important;}
+#portfolio .genre-cover{border:1px solid rgba(255,255,255,.04) !important;}
+#prices .price{background: rgba(18,16,14,.38) !important; border:1px solid rgba(218,192,155,.20) !important;}
+footer{border-top:1px solid rgba(218,192,155,.18) !important;}
+.gallery-toolbar{background: rgba(10,9,8,.86) !important; border-bottom:1px solid rgba(218,192,155,.2) !important;}
+.back-button,.close-button{border:1px solid rgba(218,192,155,.24) !important; background: rgba(16,14,12,.26) !important;}
+
+/* People circles: transparent photo area with softer ring */
+#people .person-circle{
+  box-shadow: 0 16px 34px rgba(0,0,0,.34) !important;
+}
+#people .person-circle::before{
+  content:"" !important;
+  display:block !important;
+  position:absolute;
+  inset:-13px;
+  border-radius:50%;
+  border:1.4px solid rgba(218,192,155,.26) !important;
+  background:transparent !important;
+}
+#people .person-circle::after{
+  content:"" !important;
+  display:block !important;
+  position:absolute;
+  inset:-22px;
+  border-radius:50%;
+  border:1px solid rgba(218,192,155,.16) !important;
+  background:transparent !important;
+}
+#people .person-circle.carousel-focus::before{border-color: rgba(218,192,155,.42) !important;}
+#people .person-circle.carousel-focus::after{border-color: rgba(218,192,155,.26) !important;}
+
+/* Softer and slower background transition on scroll */
+.bg-photo{
+  transition: opacity 2.6s cubic-bezier(.22,.61,.36,1) !important;
+  filter: saturate(.78) contrast(1.02) brightness(.54) !important;
+}
+.bg-cell{
+  animation-duration: 16s !important;
+}
+.bg-cell:nth-child(2){ animation-duration:18s !important; }
+.bg-cell:nth-child(3){ animation-duration:17s !important; }
+.bg-shade{
+  background:
+    linear-gradient(180deg, rgba(8,7,6,.14) 0%, rgba(8,7,6,.30) 34%, rgba(12,11,10,.78) 82%, #0c0b0a 100%),
+    linear-gradient(90deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.06) 50%, rgba(0,0,0,.18) 100%) !important;
+}
+
+
+/* ===== v18: lighter frames + visible hero link labels + ultra-smooth background ===== */
+
+/* Make the marked panel frames much more transparent */
+#people.panel,
+#portfolio.panel,
+#about.panel,
+#prices.panel{
+  border-color: rgba(218,192,155,.12) !important;
+  background: linear-gradient(180deg, rgba(18,16,14,.54), rgba(13,12,11,.60)) !important;
+  box-shadow: 0 20px 54px rgba(0,0,0,.22) !important;
+}
+#people.panel::before,
+#people.panel::after,
+#portfolio.panel::before,
+#portfolio.panel::after,
+#about.panel::before,
+#about.panel::after,
+#prices.panel::before,
+#prices.panel::after{
+  opacity: .18 !important;
+}
+.people-panel,
+#people .people-strip,
+#portfolio .genre-grid{
+  border-color: rgba(218,192,155,.10) !important;
+}
+.section-head,
+.hero-tools,
+.hero-tgk,
+.hero-genre-link,
+.social,
+#prices .price,
+.gallery-toolbar,
+.back-button,
+.close-button{
+  border-color: rgba(218,192,155,.14) !important;
+}
+
+/* Restore visible labels inside the hero sub-section buttons */
+.hero-genre-links{
+  opacity: 1 !important;
+}
+.hero-genre-link,
+.hero-genre-link span,
+.hero-tgk,
+.hero-tgk span{
+  color: #efe6d9 !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.28) !important;
+}
+.hero-genre-link{
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  letter-spacing: .05em !important;
+  background: rgba(11,10,9,.08) !important;
+  min-height: 46px !important;
+}
+.hero-genre-link:hover{background: rgba(28,24,20,.24) !important;}
+.hero-tgk span{font-size: 15px !important; font-weight: 900 !important;}
+.hero-tgk svg{opacity:.95 !important;}
+
+/* Background transitions even smoother and gentler */
+.bg-stage{
+  inset: 56px 0 0 0 !important;
+}
+.bg-cell{
+  animation-duration: 18s !important;
+}
+.bg-cell:nth-child(2){ animation-duration: 21s !important; }
+.bg-cell:nth-child(3){ animation-duration: 19.5s !important; }
+.bg-photo{
+  transition: opacity 3.6s cubic-bezier(.22,.61,.36,1) !important;
+  filter: saturate(.76) contrast(1.01) brightness(.53) !important;
+}
+.bg-shade{
+  background:
+    linear-gradient(180deg, rgba(8,7,6,.10) 0%, rgba(8,7,6,.24) 32%, rgba(12,11,10,.74) 82%, #0c0b0a 100%),
+    linear-gradient(90deg, rgba(0,0,0,.16) 0%, rgba(0,0,0,.05) 50%, rgba(0,0,0,.14) 100%) !important;
+}
+
+/* keep main text visible and unchanged elsewhere */
+.hero h1,
+.section-head h2,
+.about-copy h2,
+.gallery-toolbar h2,
+.genre-meta h3,
+.price strong{
+  opacity: 1 !important;
+}
+
+
+/* ===== v18b: restore button text/icons ===== */
+.back-button,
+.close-button,
+.back-button span,
+.close-button span {
+  color: #efe6d9 !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.35) !important;
+}
+.back-button{
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em !important;
+}
+.close-button{
+  display:grid !important;
+  place-items:center !important;
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}

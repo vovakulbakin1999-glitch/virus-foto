@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c0b0a">
+  <title>VIRUS FOTO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-stage" id="bgStage" aria-hidden="true"></div>
+  <div class="bg-shade" aria-hidden="true"></div>
+
+  <header class="header">
+    <button class="brand" type="button" data-home>
+      <img src="assets/logo.jpg" alt="">
+      <span>VIRUS FOTO</span>
+    </button>
+    <nav>
+      <a href="#people">Люди</a>
+      <a href="#portfolio">Жанры</a>
+      <a href="#prices">Цены</a>
+      <a href="#about">О фотографе</a>
+    </nav>
+    <div class="socials" data-socials></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="kicker">Фотограф · Челябинск</span>
+        <h1>VIRUS<br>FOTO</h1>
+        <p data-hero-text></p>
+        <div class="hero-tools">
+          <a class="hero-cta" href="#people">Смотреть портфолио ↓</a>
+          <a class="hero-tgk" data-tgk target="_blank" rel="noopener" aria-label="ТГК">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3.6 10.7c-1.2.5-1.2 1.2-.2 1.5l4.5 1.4 1.7 5.2c.2.7.1.9.8.9.6 0 .9-.3 1.2-.6l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8L22.7 6c.3-1.2-.5-1.8-1.7-1.4Z"/></svg>
+            <span>ТГК</span>
+          </a>
+          <div class="hero-genre-links" id="heroGenreLinks" aria-label="Подразделы жанров"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel people-panel" id="people">
+      <div class="people-strip" id="peopleStrip" aria-label="Персональные фотосессии"></div>
+    </section>
+
+    <section class="panel" id="portfolio">
+      <div class="section-head">
+        <span>Портфолио</span>
+        <h2>Жанры</h2>
+      </div>
+      <div class="genre-grid" id="genreGrid"></div>
+    </section>
+
+    <section class="about panel" id="about">
+      <div class="about-photo"><img src="assets/photographer.jpg" alt="Фотограф VIRUS FOTO"></div>
+      <div class="about-copy">
+        <span>О фотографе</span>
+        <h2>Свет, характер и настоящие эмоции.</h2>
+        <p data-about></p>
+      </div>
+    </section>
+
+    <section class="panel" id="prices">
+      <div class="section-head">
+        <span>Стоимость</span>
+        <h2>Съёмки</h2>
+        <p>Аренда студии при необходимости оплачивается отдельно.</p>
+      </div>
+      <div class="prices" id="pricesGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="assets/logo.jpg" alt="">
+      <div><strong>VIRUS FOTO</strong><span>Челябинск и Челябинская область</span></div>
+    </div>
+    <div class="socials footer-socials" data-socials></div>
+  </footer>
+
+  <section class="gallery-view" id="galleryView" aria-hidden="true">
+    <div class="gallery-toolbar">
+      <button class="back-button" id="galleryBack" type="button">← Назад</button>
+      <div>
+        <span id="galleryType">Серия</span>
+        <h2 id="galleryTitle"></h2>
+        <p id="galleryCount"></p>
+      </div>
+      <button class="close-button" id="galleryClose" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="gallery-scroll" id="galleryScroll">
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" id="lightboxClose" aria-label="Закрыть">×</button>
+    <img id="lightboxImage" alt="">
+  </div>
+
+  <script src="site-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
