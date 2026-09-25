@@ -146,9 +146,12 @@ window.SITE_DATA = {
       "photos": [
         "assets/images/kids_001.webp",
         "assets/images/kids_002.webp",
-        "assets/images/kids_003.webp"
+        "assets/images/kids_003.webp",
+        "assets/images/kids_004.webp",
+        "assets/images/kids_005.webp",
+        "assets/images/kids_006.webp"
       ],
-      "cover": "assets/images/kids_001.webp"
+      "cover": "assets/images/kids_005.webp"
     }
   ],
   "genres": [
@@ -271,7 +274,10 @@ window.SITE_DATA = {
       "photos": [
         "assets/images/kids_001.webp",
         "assets/images/kids_002.webp",
-        "assets/images/kids_003.webp"
+        "assets/images/kids_003.webp",
+        "assets/images/kids_004.webp",
+        "assets/images/kids_005.webp",
+        "assets/images/kids_006.webp"
       ],
       "cover": "assets/covers/kids_cover.webp"
     },
