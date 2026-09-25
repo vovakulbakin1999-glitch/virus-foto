@@ -2057,3 +2057,94 @@ footer{border-top:1px solid rgba(218,192,155,.18) !important;}
   font-size: 12px !important;
   line-height: 1.35 !important;
 }
+
+
+/* ===== DESKTOP + GLOBAL PRICES VISIBILITY FIX ===== */
+#prices,
+#prices .section-head,
+#prices .section-head span,
+#prices .section-head h2,
+#prices .section-head p,
+#prices .prices,
+#prices .price,
+#prices .price b,
+#prices .price strong,
+#prices .price span{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+#prices .section-head span{
+  color:#c3a174 !important;
+  -webkit-text-fill-color:#c3a174 !important;
+}
+
+#prices .section-head h2{
+  color:#f5eee5 !important;
+  -webkit-text-fill-color:#f5eee5 !important;
+}
+
+#prices .section-head p{
+  color:#b6aa9b !important;
+  -webkit-text-fill-color:#b6aa9b !important;
+}
+
+#prices .price b{
+  color:#f5eee5 !important;
+  -webkit-text-fill-color:#f5eee5 !important;
+}
+
+#prices .price strong{
+  color:#c3a174 !important;
+  -webkit-text-fill-color:#c3a174 !important;
+}
+
+#prices .price span{
+  color:#b6aa9b !important;
+  -webkit-text-fill-color:#b6aa9b !important;
+}
+
+#prices .section-head span,
+#prices .section-head h2,
+#prices .section-head p,
+#prices .price b,
+#prices .price strong,
+#prices .price span{
+  background:none !important;
+  background-image:none !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+  -webkit-mask:none !important;
+  mask:none !important;
+  text-shadow:none !important;
+}
+
+#prices .price,
+#prices .price b,
+#prices .price strong,
+#prices .price span{
+  font-family:Arial,Helvetica,sans-serif !important;
+  letter-spacing:0 !important;
+  word-spacing:0 !important;
+  font-kerning:normal !important;
+}
+
+#prices .price b{
+  font-size:20px !important;
+  font-weight:700 !important;
+  line-height:1.25 !important;
+}
+
+#prices .price strong{
+  display:block !important;
+  font-size:22px !important;
+  font-weight:800 !important;
+  line-height:1.15 !important;
+  margin:20px 0 4px !important;
+  white-space:nowrap !important;
+}
+
+#prices .price span{
+  font-size:12px !important;
+  line-height:1.35 !important;
+}
