@@ -163,3 +163,66 @@ button,.social,.hero-cta,.hero-tgk,.back-button,.close-button{min-height:44px}
     font-size:20px !important;
   }
 }
+
+
+/* ===== MOBILE PRICES VISIBILITY HOTFIX ===== */
+@media (max-width:680px){
+  #prices,
+  #prices .section-head,
+  #prices .section-head span,
+  #prices .section-head h2,
+  #prices .section-head p,
+  #prices .prices,
+  #prices .price,
+  #prices .price b,
+  #prices .price strong,
+  #prices .price span{
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+
+  #prices .section-head span{
+    color:#c3a174 !important;
+    -webkit-text-fill-color:#c3a174 !important;
+  }
+
+  #prices .section-head h2{
+    color:#f5eee5 !important;
+    -webkit-text-fill-color:#f5eee5 !important;
+  }
+
+  #prices .section-head p{
+    color:#b6aa9b !important;
+    -webkit-text-fill-color:#b6aa9b !important;
+  }
+
+  #prices .price b{
+    color:#f5eee5 !important;
+    -webkit-text-fill-color:#f5eee5 !important;
+  }
+
+  #prices .price strong{
+    color:#c3a174 !important;
+    -webkit-text-fill-color:#c3a174 !important;
+  }
+
+  #prices .price span{
+    color:#b6aa9b !important;
+    -webkit-text-fill-color:#b6aa9b !important;
+  }
+
+  #prices .section-head span,
+  #prices .section-head h2,
+  #prices .section-head p,
+  #prices .price b,
+  #prices .price strong,
+  #prices .price span{
+    background:none !important;
+    background-image:none !important;
+    -webkit-background-clip:border-box !important;
+    background-clip:border-box !important;
+    -webkit-mask:none !important;
+    mask:none !important;
+    text-shadow:none !important;
+  }
+}
