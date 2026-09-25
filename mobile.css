@@ -226,3 +226,27 @@ button,.social,.hero-cta,.hero-tgk,.back-button,.close-button{min-height:44px}
     text-shadow:none !important;
   }
 }
+
+
+/* ===== MOBILE LIGHTBOX SWIPE + NAV ===== */
+@media (max-width:680px){
+  .lightbox .lightbox-close{
+    top:max(10px,env(safe-area-inset-top));
+    right:max(10px,env(safe-area-inset-right));
+    width:44px;
+    height:44px;
+    min-height:44px;
+  }
+  .lightbox .lightbox-nav{
+    width:44px;
+    height:58px;
+    min-height:58px;
+    font-size:42px;
+    background:rgba(15,13,11,.58);
+  }
+  .lightbox .lightbox-prev{left:max(6px,env(safe-area-inset-left));right:auto}
+  .lightbox .lightbox-next{right:max(6px,env(safe-area-inset-right));left:auto}
+  .lightbox .lightbox-counter{
+    bottom:max(10px,env(safe-area-inset-bottom));
+  }
+}
