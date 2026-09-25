@@ -264,7 +264,13 @@ window.SITE_DATA = {
         "assets/images/reportage_001.webp",
         "assets/images/reportage_002.webp",
         "assets/images/reportage_003.webp",
-        "assets/images/reportage_004.webp"
+        "assets/images/reportage_004.webp",
+        "assets/images/reportage_20260925_071114.jpg",
+        "assets/images/reportage_20260925_071118.jpg",
+        "assets/images/reportage_20260925_071218.jpg",
+        "assets/images/reportage_20260925_071220.jpg",
+        "assets/images/reportage_20260925_071226.jpg",
+        "assets/images/reportage_20260925_071422.png"
       ],
       "cover": "assets/covers/reportage_cover.webp"
     },
