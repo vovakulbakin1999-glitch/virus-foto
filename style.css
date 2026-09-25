@@ -51,9 +51,9 @@ main{max-width:1320px;margin:auto;padding:0 24px 90px}
 .genre-meta h3{font:500 27px Georgia,serif;margin:0}
 .genre-meta p{color:#736756;margin:4px 0 0;font-size:12px}
 .genre-meta b{font-size:24px}
-.about{display:grid;grid-template-columns:minmax(270px,420px) 1fr;gap:50px;align-items:center}
-.about-photo{padding:9px;background:var(--paper);transform:rotate(-.6deg)}
-.about-photo img{width:100%;display:block}
+.about{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:40px;align-items:center}
+.about-photo{max-width:300px;width:100%;justify-self:start;padding:9px;background:var(--paper);transform:rotate(-.6deg)}
+.about-photo img{width:100%;height:auto;display:block}
 .about-copy p{color:#c8bcad;line-height:1.85;max-width:650px}
 .prices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .price{padding:24px;border:1px solid var(--line);background:rgba(13,12,10,.78)}
@@ -2017,4 +2017,11 @@ footer{border-top:1px solid rgba(218,192,155,.18) !important;}
   font-size: 30px !important;
   font-weight: 800 !important;
   line-height: 1 !important;
+}
+
+
+/* ===== ABOUT PHOTO SIZE FIX ===== */
+@media(max-width:900px){
+  .about{grid-template-columns:1fr !important;}
+  .about-photo{max-width:220px !important;width:100% !important;margin:0 auto 18px !important;justify-self:center !important;}
 }
