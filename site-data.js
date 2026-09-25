@@ -386,3 +386,9 @@ window.SITE_DATA = {
     "assets/images/kids_003.webp"
   ]
 };
+
+
+/* HQ KIDS EMBED START */
+window.__kids4b64 = "";
+window.__kids5b64 = "";
+window.__kids6b64 = "";
