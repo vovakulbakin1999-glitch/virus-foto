@@ -313,8 +313,8 @@ const bgPhotoFor = (step, slot) => {
   return D.background[(normalized * 7 + slot * 13) % total];
 };
 
-let targetBgScroll = window.scrollY;
-let smoothBgScroll = targetBgScroll;
+let targetBgScroll = 0;
+let smoothBgScroll = 0;
 let renderedBgStep = Number.NaN;
 let bgRaf = 0;
 
@@ -356,11 +356,12 @@ function renderBackground(){
 }
 
 addEventListener('scroll', () => {
-  targetBgScroll = window.scrollY;
+  // Background photos stay fixed while the page scrolls.
 }, {passive:true});
 
 addEventListener('resize', () => {
-  targetBgScroll = window.scrollY;
+  targetBgScroll = 0;
+  smoothBgScroll = 0;
 }, {passive:true});
 
 loadBgStep(0);
