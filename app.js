@@ -34,7 +34,7 @@ if(heroGenreLinks){
     btn.addEventListener('click', () => openGallery({
       type:'Жанр',
       title:genre.name,
-      groups:buildGenreGroups(genre)
+      photos:orderedGenrePhotos(genre)
     }));
     heroGenreLinks.appendChild(btn);
   });
@@ -232,25 +232,29 @@ requestAnimationFrame(() => {
 
 const genreGrid = document.getElementById('genreGrid');
 
-function buildGenreGroups(genre){
-  const remaining = new Set(genre.photos);
-  const groups = [];
+function orderedGenrePhotos(genre){
+  const freshPhotos = D.persons?.[0]?.photos || [];
+  const genreSet = new Set(genre.photos);
+  const seen = new Set();
+  const ordered = [];
 
-  // Люди идут отдельными последовательными блоками.
-  // Порядок персон берём из верхних кругов: свежая съёмка остаётся первой.
-  D.persons.forEach(person => {
-    const photos = person.photos.filter(src => remaining.has(src));
-    if(!photos.length) return;
-    photos.forEach(src => remaining.delete(src));
-    groups.push({id:person.id, photos});
+  // Всё, что находится в первом круге «свежее», всегда показываем сверху.
+  freshPhotos.forEach(src => {
+    if(genreSet.has(src) && !seen.has(src)){
+      ordered.push(src);
+      seen.add(src);
+    }
   });
 
-  // Кадры, не относящиеся к персональным кругам (Love Story / репортаж и т.п.),
-  // сохраняются отдельным блоком и не перемешиваются с людьми.
-  const other = genre.photos.filter(src => remaining.has(src));
-  if(other.length) groups.push({id:'other', photos:other});
+  // Остальные кадры идут дальше в порядке, заданном в данных жанра.
+  genre.photos.forEach(src => {
+    if(!seen.has(src)){
+      ordered.push(src);
+      seen.add(src);
+    }
+  });
 
-  return groups;
+  return ordered;
 }
 
 D.genres.forEach(genre => {
@@ -269,7 +273,7 @@ D.genres.forEach(genre => {
   b.addEventListener('click', () => openGallery({
     type:'Жанр',
     title:genre.name,
-    groups:buildGenreGroups(genre)
+    photos:orderedGenrePhotos(genre)
   }));
   genreGrid.appendChild(b);
 });
