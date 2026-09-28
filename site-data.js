@@ -224,7 +224,7 @@ window.SITE_DATA = {
         "assets/images/nature_035.webp",
         "assets/images/nature_036.webp"
       ],
-      "cover": "assets/covers/nature_cover.webp"
+      "cover": "assets/images/nature_039.jpg"
     },
     {
       "slug": "city",
